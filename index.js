@@ -13,7 +13,7 @@ import { getOnly } from "./routes/getOnlyRoute.js";
 import { upComingEventRoute } from "./routes/upComingEventRoute.js";
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors({
   origin: ["http://localhost:5173"],
