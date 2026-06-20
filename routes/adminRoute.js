@@ -6,7 +6,7 @@ const adminRoute = express.Router();
 
 adminRoute.post("/admin/login", loginAdmin)
 adminRoute.delete("/admin/logout", logoutAdmin)
-adminRoute.get("/admin/get", verifyToken, getAdmin)
+adminRoute.get("/admin/get",  getAdmin)
 adminRoute.get("/auth/me", verifyToken, (req, res) => {
   res.json({
     user: req.user
