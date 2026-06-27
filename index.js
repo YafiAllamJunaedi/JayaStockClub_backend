@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import "./models/index.js";
+import initAdmin from "./utils/initAdmin.js";
 
 import { pengurusRoute } from "./routes/pengurusRoute.js";
 import { adminRoute } from "./routes/adminRoute.js";
@@ -11,6 +12,8 @@ import { blogRoute } from "./routes/blogRoute.js";
 import { galleryRoute } from "./routes/galleryRoute.js";
 import { getOnly } from "./routes/getOnlyRoute.js";
 import { upComingEventRoute } from "./routes/upComingEventRoute.js";
+
+await initAdmin();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
