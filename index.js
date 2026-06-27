@@ -20,7 +20,8 @@ const PORT = process.env.PORT || 5000;
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://jayastockclub-website.vercel.app"
+  "https://jayastockclub-website.vercel.app",
+  "https://www.jayastockclub.com"
 ];
 
 app.use(cors({
