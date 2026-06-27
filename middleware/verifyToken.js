@@ -1,26 +1,47 @@
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
-export const verifyToken = async (req, res, next) => {
+export const verifyToken = (req, res, next) => {
   try {
-    const token = req.cookies.accessToken;
+
+    console.log("========== VERIFY TOKEN ==========");
+    console.log("Origin:", req.headers.origin);
+    console.log("Cookie Header:", req.headers.cookie);
+    console.log("Parsed Cookies:", req.cookies);
+
+    const token = req.cookies?.accessToken;
+
+    console.log("Access Token:", token);
 
     if (!token) {
-      return res.status(403).json({ message: "Token not found" });
+      console.log("Token tidak ditemukan");
+      return res.status(403).json({
+        message: "Token not found"
+      });
     }
 
-    jwt.verify(token, process.env.SECRET_ACCESS_TOKEN, (err, decode) => {
+    jwt.verify(token, process.env.SECRET_ACCESS_TOKEN, (err, decoded) => {
+
+      console.log("JWT Error:", err);
+      console.log("Decoded:", decoded);
+
       if (err) {
-        return res
-          .status(403)
-          .json({ message: "The token is incorrect or has expired" });
+        return res.status(403).json({
+          message: "The token is incorrect or has expired"
+        });
       }
 
-      req.user = decode;
+      req.user = decoded;
       next();
     });
+
   } catch (error) {
-    console.error("Error in verifyToken:", error);
-    return res.status(500).json({ message: "Internal Server Error" });
+
+    console.error("Verify Token Error:", error);
+
+    return res.status(500).json({
+      message: "Internal Server Error"
+    });
+
   }
 };

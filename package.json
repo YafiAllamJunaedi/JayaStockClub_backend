@@ -8,7 +8,7 @@
     "dev": "nodemon index",
     "start" : "node index.js",
     "seed": "sequelize-cli db:seed:all --config config/config.cjs",
-     "deploy": "npm run migrate && npm run seed && npm start"
+     "deploy": "npm run migrate && npm run seed && npm start" 
     
   },
   "keywords": [],
